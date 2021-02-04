@@ -1,8 +1,4 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
-
-// Package triangle should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
+// Package triangle determines the type of a triangle given its three sides.
 package triangle
 
 import (
@@ -20,7 +16,7 @@ const (
 	Sca = "Sca" // scalene
 )
 
-// KindFromSides should have a comment documenting it.
+// KindFromSides returns the type of triangle given three sides
 func KindFromSides(a, b, c float64) Kind {
 	if !isTriangle(a, b, c) {
 		return NaT
@@ -28,7 +24,7 @@ func KindFromSides(a, b, c float64) Kind {
 	if isEquilateral(a, b, c) {
 		return Equ
 	}
-	if isIsocceles(a, b, c) {
+	if isIsosceles(a, b, c) {
 		return Iso
 	}
 	return Sca
@@ -61,7 +57,8 @@ func isEquilateral(a, b, c float64) bool {
 	return false
 }
 
-func isIsocceles(a, b, c float64) bool {
+// An Equilateral triangle is also considered isosceles
+func isIsosceles(a, b, c float64) bool {
 	if a == b || b == c || a == c {
 		return true
 	}
