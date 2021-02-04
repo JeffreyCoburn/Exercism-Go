@@ -4,6 +4,7 @@ package raindrops
 import (
 	"sort"
 	"strconv"
+	"strings"
 )
 
 var raindropWords = map[int]string{
@@ -12,18 +13,20 @@ var raindropWords = map[int]string{
 	7: "Plong",
 }
 
-// Convert takes an integer and returns a string of raindrop sounds based on its factors
-func Convert(input int) (raindropSound string) {
+// Convert takes an integer and returns a string of raindrop sounds based on the factors defined in raindropWords
+func Convert(input int) string {
+	var raindropSound strings.Builder
 	keys := sortedKeys()
 	for _, key := range keys {
 		if input%key == 0 {
-			raindropSound += raindropWords[key]
+			raindropSound.WriteString(raindropWords[key])
 		}
 	}
-	if raindropSound == "" {
-		raindropSound = strconv.Itoa(input)
+	// If there were no factors with raindrop sounds, return the number itself as a string
+	if raindropSound.String() == "" {
+		raindropSound.WriteString(strconv.Itoa(input))
 	}
-	return raindropSound
+	return raindropSound.String()
 }
 
 func sortedKeys() (keys []int) {
