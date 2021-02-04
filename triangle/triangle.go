@@ -6,14 +6,14 @@ import (
 )
 
 // Kind is the type of triangle
-type Kind string
+type Kind int
 
 // Types of triangles
 const (
-	NaT = "NaT" // not a triangle
-	Equ = "Equ" // equilateral
-	Iso = "Iso" // isosceles
-	Sca = "Sca" // scalene
+	NaT = iota // not a triangle
+	Equ        // equilateral
+	Iso        // isosceles
+	Sca        // scalene
 )
 
 // KindFromSides returns the type of triangle given three sides
