@@ -2,6 +2,7 @@
 package triangle
 
 import (
+	"errors"
 	"math"
 )
 
@@ -18,16 +19,31 @@ const (
 
 // KindFromSides returns the type of triangle given three sides
 func KindFromSides(a, b, c float64) Kind {
-	if !isTriangle(a, b, c) {
+	t, err := newTriangle(a, b, c)
+	if err != nil {
 		return NaT
 	}
-	if isEquilateral(a, b, c) {
+	if isEquilateral(t) {
 		return Equ
 	}
-	if isIsosceles(a, b, c) {
+	if isIsosceles(t) {
 		return Iso
 	}
 	return Sca
+}
+
+func isEquilateral(t triangle) bool {
+	if t.a == t.b && t.b == t.c {
+		return true
+	}
+	return false
+}
+
+func isIsosceles(t triangle) bool {
+	if !isEquilateral(t) && t.a == t.b || t.b == t.c || t.a == t.c {
+		return true
+	}
+	return false
 }
 
 func isTriangle(a, b, c float64) bool {
@@ -50,17 +66,15 @@ func isTriangle(a, b, c float64) bool {
 	return true
 }
 
-func isEquilateral(a, b, c float64) bool {
-	if a == b && b == c {
-		return true
-	}
-	return false
+type triangle struct {
+	a, b, c float64
 }
 
-// An Equilateral triangle is also considered isosceles
-func isIsosceles(a, b, c float64) bool {
-	if a == b || b == c || a == c {
-		return true
+func newTriangle(a, b, c float64) (triangle, error) {
+	if !isTriangle(a, b, c) {
+		return triangle{0, 0, 0}, errInvalidSides
 	}
-	return false
+	return triangle{a, b, c}, nil
 }
+
+var errInvalidSides = errors.New("Provided sides are not a triangle")
