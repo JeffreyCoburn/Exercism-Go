@@ -16,7 +16,7 @@ T -> A
 A -> U
 */
 func ToRNA(dna string) string {
-	result := ""
+	var result string
 	for _, char := range dna {
 		result += dnaToRna[char]
 	}
