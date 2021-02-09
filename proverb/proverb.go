@@ -13,16 +13,22 @@ const (
 //   ...
 //   "And all for the want of a <...>."
 func Proverb(rhyme []string) []string {
-	if len(rhyme) == 0 {
+	numberOfLines := len(rhyme)
+	if numberOfLines == 0 {
 		return []string{}
 	}
-	var proverb []string = make([]string, len(rhyme))
-	proverb[len(rhyme)-1] = fmt.Sprintf(last, rhyme[0])
-	if len(rhyme) == 1 {
+	// Add last line
+	var proverb []string = make([]string, numberOfLines)
+	proverb[numberOfLines-1] = fmt.Sprintf(last, rhyme[0])
+
+	if numberOfLines == 1 {
 		return proverb
 	}
-	for i := 0; i < len(rhyme)-1; i++ {
+
+	// Add beginning lines
+	for i := 0; i < numberOfLines-1; i++ {
 		proverb[i] = fmt.Sprintf(line, rhyme[i], rhyme[i+1])
 	}
+
 	return proverb
 }
