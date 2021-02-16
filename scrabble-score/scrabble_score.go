@@ -51,7 +51,10 @@ const (
 	triple = 3
 )
 
-var ErrInvalidLength = errors.New("Must have exactly one letter modifier for each letter in the word.")
+// ErrInvalidLength is returned if the number of letter modifiers does not match the number of letters
+var ErrInvalidLength = errors.New("Must have exactly one letter modifier for each letter in the word")
+
+// ErrInvalidModifier is returned if the letter or word modifier is not valid
 var ErrInvalidModifier = errors.New("Invalid modifier.  Must be single(x1), double(x2), or triple(x3)")
 
 // Score calculates the score of a scrabble word with no special modifiers, such as double/triple letters or words
