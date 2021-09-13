@@ -1,20 +1,23 @@
 package lasagna
 
+const OVENTIME = 40    // How many minutes the lasagna should be in the oven
+const TIMEPERLAYER = 2 // The minutes per layer it takes to prepare the lasagna
+
 // Returns how many minutes the lasagna should be in the oven
 func OvenTime() int {
-	return 40
+	return OVENTIME
 }
 
 // Takes the actual minutes the lasagna has been in the oven as a parameter and returns how many minutes the
 // lasagna still has to remain in the oven
 func RemainingOvenTime(elapsedOvenTime int) int {
-	return OvenTime() - elapsedOvenTime
+	return OVENTIME - elapsedOvenTime
 }
 
 // Takes the number of layers you added to the lasagna as a parameter and returns how many minutes you spent
-// preparing the lasagna, assuming each layer takes you 2 minutes to prepare.
+// preparing the lasagna
 func PreparationTime(layers int) int {
-	return layers * 2
+	return layers * TIMEPERLAYER
 }
 
 // Takes the number of layers you added to the lasagna, and the number of minutes the lasagna has been in the oven.
