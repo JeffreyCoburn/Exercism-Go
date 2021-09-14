@@ -8,8 +8,8 @@ import (
 // IsIsogram checks if a string is na isogram
 func IsIsogram(input string) bool {
 	charsInInput := make(map[rune]int) // Stores the characters of the input string
-	s := strings.ToLower(input)
-	for _, char := range s {
+	input = strings.ToLower(input)
+	for _, char := range input {
 		if !unicode.IsLetter(char) {
 			continue
 		}
