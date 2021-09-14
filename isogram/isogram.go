@@ -22,5 +22,4 @@ func IsIsogram(input string) bool {
 		charsInInput[unicode.ToLower(char)] = 1
 	}
 	return true
-
 }
