@@ -19,7 +19,7 @@ func IsIsogram(input string) bool {
 			return false
 		}
 		// If the character wasn't found, add the character to the map
-		charsInInput[unicode.ToLower(char)] = 1
+		charsInInput[char] = 1
 	}
 	return true
 }
