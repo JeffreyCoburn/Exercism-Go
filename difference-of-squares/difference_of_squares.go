@@ -1,7 +1,5 @@
 package diffsquares
 
-import "math"
-
 // SumOfSquares returns the sum of the squares of the first N natural numbers: 1^2 + 2^2 + ... + n^2
 func SumOfSquares(n int) int {
 	// 1^2 + 2^2 + 3^2 ... + n^2 = n(n+1)(2n+1)/6
@@ -10,8 +8,8 @@ func SumOfSquares(n int) int {
 
 // SquareOfSum returns the square of the sums first N natural numbers: (1+2+...+n)^2
 func SquareOfSum(n int) int {
-	sum := float64((n * (n + 1)) / 2)
-	return int(math.Pow(sum, 2))
+	sum := (n * (n + 1)) / 2
+	return sum * sum
 }
 
 // Difference calculates the difference between the square of the sum and the sum of the squares of the first N natural numbers
