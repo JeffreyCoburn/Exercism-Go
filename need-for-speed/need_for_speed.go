@@ -10,10 +10,12 @@ type Car struct {
 
 // NewCar creates a new remote controlled car with full battery and given specifications.
 func NewCar(speed, batteryDrain int) Car {
-	battery := 100
-	distance := 0
-	return Car{speed, batteryDrain, battery, distance}
-
+	return Car{
+		speed:        speed,
+		batteryDrain: batteryDrain,
+		battery:      100,
+		distance:     0,
+	}
 }
 
 // Track implements a race track.
@@ -30,16 +32,13 @@ func NewTrack(distance int) Track {
 // the car will not move.
 func Drive(car Car) Car {
 	if car.battery >= car.batteryDrain {
-		car.battery = car.battery - car.batteryDrain
-		car.distance = car.distance + car.speed
+		car.battery -= car.batteryDrain
+		car.distance += car.speed
 	}
 	return car
 }
 
 // CanFinish checks if a car is able to finish a certain track.
 func CanFinish(car Car, track Track) bool {
-	if track.distance/car.speed*car.batteryDrain < car.battery {
-		return true
-	}
-	return false
+	return track.distance < car.battery/car.speed*car.batteryDrain
 }
